@@ -37,7 +37,12 @@ class client():
     def receive(self, msg):
         print("Message received: " + msg)
 
-    # basic encryption using the key, TODO: improve encryption method, this is temporary
+    # basic encryption using the key TODO: improve encryption method, this is temporary
     def encrypt(self, msg):
         for i in range(len(msg)):
             msg[i] = chr(ord(msg[i]) + self.key)
+    
+    # decrypts message using the key
+    def decrypt(self, msg):
+        for i in range(len(msg)):
+            msg[i] = chr(ord(msg[i]) - self.key)
