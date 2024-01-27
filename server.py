@@ -1,11 +1,6 @@
-from client import *
-
-class server():
+class Server:
     def __init__(self):
         self.users = []
-        # creates users
-        self.users.append(client("Bob"))
-        self.users.append(client("Jim"))
     
     # returns user object from list of users
     def getUser(self, user):
@@ -18,3 +13,7 @@ class server():
         print("Message received: " + msg + " from " + user)
         # sends message to user
         self.getUser(user).receive(msg)
+    
+    # adds user to list of users
+    def pushUser(self, user):
+        self.users.append(user)

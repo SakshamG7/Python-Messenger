@@ -1,19 +1,11 @@
-import random
-import server
+# Imports
+from server import Server
 
-class client():
-    # Constructor
+# Client class
+class Client:
     def __init__(self, user):
         self.user = user
         self.key = None
-
-    # Get User
-    def getUser(self):
-        return self.user
-    
-    # Set User
-    def setUser(self, user):
-        self.user = user
 
     # Get Key
     def getKey(self):
@@ -23,15 +15,17 @@ class client():
     def setKey(self, key):
         self.key = key
     
-    # Generate Key
+    # Generate Key, basic way to get a random number TODO: improve key generation method, this is temporary
     def genKey(self):
-        self.key = random.randint(1, 100)
-        return self.key
+        seed = self.user
+        for i in range(len(seed)):
+            self.key += ord(seed[i])
+        self.key = self.key % 26
     
     # Send message to server for requested user
     def send(self, msg, user):
         print("Message sent: " + msg + " to " + user)
-        server.receive(msg, user)
+        Server.receive(msg, user)
 
     # Message listener from server
     def receive(self, msg):
